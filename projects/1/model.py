@@ -39,5 +39,5 @@ preprocessor = ColumnTransformer(
 #class_weight='balanced', solver='saga', penalty='l1'
 model = Pipeline(steps=[
     ('preprocessor', preprocessor),
-    ('linearregression', LogisticRegression())
+    ('linearregression', LogisticRegression(class_weight='balanced'))
 ])

@@ -43,7 +43,7 @@ logging.info(f"TRAIN_PATH {train_path}")
 
 read_table_opts = dict(sep="\t", names=fields, index_col=False)
 df = pd.read_table(train_path, **read_table_opts)
-df = df.sample(n=int(df.shape[0]/12), random_state=1)
+df = df.sample(n=int(df.shape[0]/5), random_state=1)
 y = df['label']
 df.drop(columns=['label', 'id', 'day_number'], inplace=True)
 
