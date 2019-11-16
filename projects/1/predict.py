@@ -31,10 +31,11 @@ read_opts=dict(
         sep='\t', names=fields, index_col=False, header=None,
         iterator=True, chunksize=1000
 )
+drop_columns = ['cf1', 'cf10', 'cf20', 'cf21', 'cf22'] + ['id', 'day_number']
 
 for df in pd.read_csv(sys.stdin, **read_opts):
     ids = df['id']
-    df.drop(columns=['id', 'day_number'], inplace=True)
+    df.drop(columns=drop_columns, inplace=True)
     pred = model.predict_proba(df)[:,1]
     out = zip(ids, pred)
     print("\n".join(["{0}\t{1}".format(*i) for i in out]))

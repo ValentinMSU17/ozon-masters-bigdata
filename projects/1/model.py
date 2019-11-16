@@ -13,6 +13,7 @@ numeric_features = ["if"+str(i) for i in range(1,14)]
 categorical_features = ["cf"+str(i) for i in range(1,27)]
 
 fields = ["id", "label"] + numeric_features + categorical_features + ["day_number"]
+categorical_features = ["cf"+str(i) for i in range(1,27) if i not in [1,10,20,21,22]]
 #
 # Model pipeline
 #
@@ -39,5 +40,5 @@ preprocessor = ColumnTransformer(
 #class_weight='balanced', solver='saga', penalty='l1'
 model = Pipeline(steps=[
     ('preprocessor', preprocessor),
-    ('linearregression', LogisticRegression(class_weight='balanced'))
+    ('linearregression', LogisticRegression(class_weight='balanced', solver='lbfgs'))
 ])

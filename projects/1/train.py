@@ -45,7 +45,8 @@ read_table_opts = dict(sep="\t", names=fields, index_col=False)
 df = pd.read_table(train_path, **read_table_opts)
 df = df.sample(n=int(df.shape[0]/5), random_state=1)
 y = df['label']
-df.drop(columns=['label', 'id', 'day_number'], inplace=True)
+drop_columns = ['cf1', 'cf10', 'cf20', 'cf21', 'cf22'] + ['label', 'id', 'day_number']
+df.drop(columns=drop_columns, inplace=True)
 
 X_train, X_test, y_train, y_test = train_test_split(
     df, y, test_size=0.33, random_state=42
@@ -57,7 +58,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 model.fit(X_train, y_train)
 
 #model_score = model.score(X_test, y_test)
-model_score = log_loss(y_test, model.predict_proba(X_test), eps=1e-15)
+model_score = log_loss(y_test, model.predict_proba(X_test)[:, 1], eps=1e-15)
 logging.info(f"model score: {model_score:.3f}")
 
 # save the model
