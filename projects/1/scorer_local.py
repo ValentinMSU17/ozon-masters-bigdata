@@ -31,7 +31,7 @@ logging.info(f"PRED PATH {pred_path}")
 
 
 #open true path
-df_true = pd.read_csv(true_path, header=None, index_col=0, names=["id", "true"])
+df_true = pd.read_csv(true_path, header=None, index_col=0, names=["id", "true"], sep='\t')
 
 #open pred_path
 df_pred = pd.read_csv(pred_path, header=None, index_col=0, names=["id", "pred"], sep='\t')
