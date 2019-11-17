@@ -1,4 +1,4 @@
-add archive ozon-masters-bigdata/projects/2/filter_predict.py;
+add archive filter_predict.py;
 
 INSERT INTO TABLE ValentinMSU17.hw2_pred
 SELECT
