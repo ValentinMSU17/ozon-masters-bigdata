@@ -48,7 +48,7 @@ df = df_true.join(df_pred)
 len_df = len(df)
 assert len_true == len_df, f"Combined true and pred has different number of records: {len_df}"
 
-score = log_loss(df['true'], df['pred'])
+score = log_loss(df['true'], df['pred'], eps=1e-15)
 
 print(score)
 
