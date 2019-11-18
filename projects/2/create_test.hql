@@ -1,6 +1,5 @@
 CREATE EXTERNAL TABLE hw2_test (
 id int,
-label string,
 if1 int,
 if2 int,
 if3 int,

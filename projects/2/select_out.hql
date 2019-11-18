@@ -3,4 +3,4 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 STORED AS textfile
 SELECT *
 FROM
-    ValentinMSU17.hw2_pred;
+    hw2_pred;
