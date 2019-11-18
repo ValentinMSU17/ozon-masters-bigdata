@@ -36,4 +36,4 @@ for line in sys.stdin:
     
     if (df['if1'][0] > 20) & (df['if1'][0] < 40):
         pred = model.predict_proba(df)[:,1]
-        print(ids, pred)
+        print(int(ids), pred[0])
