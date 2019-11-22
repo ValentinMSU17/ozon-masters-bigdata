@@ -8,4 +8,6 @@ INSERT INTO TABLE hw2_pred
 SELECT
     TRANSFORM(*) USING 'filter_predict.py' AS (id, prediction)
 FROM
-    hw2_test;
+    hw2_test
+WHERE
+    (hw2_test.if1 > 20) AND (hw2_test.if1 < 40);
