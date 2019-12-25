@@ -75,14 +75,13 @@ def shortest_path(v_from, v_to, df, max_path_length=10):
                              f.col('follower_id').alias('path'))
 
     for i in range(max_path_length):
-        print(i)
         if temp_df.filter(temp_df.last_neighbour.isin(v_to)).count() > 0:
             result_df = temp_df.filter(temp_df.last_neighbour.isin(v_to))\
                                .select(f.concat('path', f.lit(','), 'last_neighbour').alias('path'))
-            result_df.select("path").write.mode("overwrite").text(result_path)
-            break
+            return result_df
         temp_df = temp_df.join(df, temp_df.last_neighbour==df.follower_id, how="inner",)\
                          .select(f.column('user_id').alias('last_neighbour'),
                                  f.concat('path', f.lit(','), 'last_neighbour').alias('path'))
         
-shortest_path(v_from, v_to, df)
+result_df = shortest_path(v_from, v_to, df)
+result_df.select("path").write.mode("overwrite").text(result_path)
