@@ -79,7 +79,7 @@ def shortest_path(v_from, v_to, df, max_path_length=10):
         if temp_df.filter(temp_df.last_neighbour.isin(v_to)).count() > 0:
             result_df = temp_df.filter(temp_df.last_neighbour.isin(v_to))\
                                .select(f.concat('path', f.lit(','), 'last_neighbour').alias('path'))
-            result_df.select("path").write.mode("overwrite").text("hw3_output")
+            result_df.select("path").write.mode("overwrite").text(result_path)
             break
         temp_df = temp_df.join(df, temp_df.last_neighbour==df.follower_id, how="inner",)\
                          .select(f.column('user_id').alias('last_neighbour'),
